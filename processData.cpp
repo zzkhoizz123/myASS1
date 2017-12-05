@@ -260,10 +260,11 @@ bool process5Event(ninjaEvent_t event, L1List<NinjaInfo_t> &dbList) {
 	time_t timeMove;
 	NinjaInfo_t ninjaPre;
 	NinjaInfo_t ninjaCur;
+	NinjaInfo_t ninjaTemp;
 	//------------------------------------------------------------ get the ninja into ninjaCur and set a flat
 	while (p) {
 		if (strcmp(idcmp, p->data.id) == 0) {
-			ninjaCur = p->data;
+			ninjaCur = ninjaTemp = p->data;
 			flat = 1;
 			break;
 		}
@@ -303,7 +304,11 @@ bool process5Event(ninjaEvent_t event, L1List<NinjaInfo_t> &dbList) {
 		}
 		p = p->pNext;
 	}
-	cout << event.code << ": " << "ninja does not move !!!\n";
+
+	timeMove = ninjaTemp.timestamp;
+	char *strTime = new char[26];
+	strPrintTime(strTime, timeMove);
+	cout << event.code << ": " << strTime << '\n';
 	return true;
 }
 
@@ -345,7 +350,7 @@ bool process6Event(ninjaEvent_t event, L1List<NinjaInfo_t> &dbList) {
 		p = p->pNext;
 	}
 	if (flat == 1) {
-		cout << event.code << ": " << "ninja does not stop !!!\n";
+		cout << event.code << ": " << "Non-stop\n";
 	}
 	else {
 		char *strTime = new char[26];
