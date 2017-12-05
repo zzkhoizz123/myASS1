@@ -142,6 +142,7 @@ bool processEvent(ninjaEvent_t& event, L1List<NinjaInfo_t>& nList, void* pGData)
 		if (flat1 == 0) {
 			process1Event(nList);
 			process2Event(nList);
+			idNinjaLostList = new L1List<string>();
 			process14Event(event,nList);
 			flat1 = 1; flat2 = 1;
 		}
@@ -155,6 +156,7 @@ bool processEvent(ninjaEvent_t& event, L1List<NinjaInfo_t>& nList, void* pGData)
 	}
 	else if (str_first_last == "14" && str.size() == 2) {
 		if (flat2 == 0) { // chua goi event 14
+			idNinjaLostList = new L1List<string>();
 			process14Event(event, nList);
 			L1Item<string> *p1 = idNinjaLostList->getHead();
 			cout << event.code << ": ";
@@ -192,6 +194,7 @@ bool processEvent(ninjaEvent_t& event, L1List<NinjaInfo_t>& nList, void* pGData)
 		}
 		else { // da goi 14 va da goi 11 
 			// da goi event 11
+			idNinjaLostList = new L1List<string>();
 			process14Event(event, nList);
 			L1Item<string> *p1 = idNinjaLostList->getHead();
 			cout << event.code << ": ";
