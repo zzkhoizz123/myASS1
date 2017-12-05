@@ -317,6 +317,7 @@ bool process5Event(ninjaEvent_t event, L1List<NinjaInfo_t> &dbList) {
 	str = str.substr(1); //---------------------------------------- take evey character from position one to over
 	const char *idcmp = str.c_str(); //--------------------------- convert string to const char*
 	int flat = 0;
+	int flatEmpty = 0; // empty when it has more than 2 update ninja but not move 
 	L1Item<NinjaInfo_t> *p = dbList.getHead();
 	time_t timeMove;
 	NinjaInfo_t ninjaPre;
@@ -345,6 +346,7 @@ bool process5Event(ninjaEvent_t event, L1List<NinjaInfo_t> &dbList) {
 			if (distanceEarth(ninjaPre.latitude, ninjaPre.longitude, ninjaCur.latitude, ninjaCur.longitude) <= 5.0 / 1000) {
 				ninjaCur = ninjaPre;
 				flat = 1;
+				flatEmpty = 1;
 			}
 			else {
 				if (flat == 0){
@@ -366,10 +368,15 @@ bool process5Event(ninjaEvent_t event, L1List<NinjaInfo_t> &dbList) {
 		p = p->pNext;
 	}
 
-	timeMove = ninjaTemp.timestamp;
-	char *strTime = new char[26];
-	strPrintTime(strTime, timeMove);
-	cout << event.code << ": " << strTime << '\n';
+	if (flatEmpty == 0) {
+		timeMove = ninjaTemp.timestamp;
+		char *strTime = new char[26];
+		strPrintTime(strTime, timeMove);
+		cout << event.code << ": " << strTime << '\n';
+	}
+	else {
+		cout << event.code << ": " << "empty\n";
+	}
 	return true;
 }
 

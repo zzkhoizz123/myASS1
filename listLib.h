@@ -341,10 +341,5 @@ int L1List<T>::removeLast() {
 
 
 extern string fnameEventGB;
-//extern string idNinjaFirst;
-//extern string  idNinjaLast;
-//extern int flat1;
-//extern L1List<string> *idNinjaLostList;
-
 
 #endif //A01_LISTLIB_H
