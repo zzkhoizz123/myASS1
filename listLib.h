@@ -18,10 +18,8 @@
 
 using namespace std;
 
-extern string fnameEventGB;
-extern string idNinjaFirst;
-extern string  idNinjaLast;
-extern int flat1;
+
+
 
 class DSAException {
     int     _error;
@@ -43,7 +41,6 @@ struct L1Item {
     L1Item() : pNext(NULL) {}
     L1Item(T &a) : data(a), pNext(NULL) {}
 };
-
 
 
 template<class ItemType>
@@ -343,7 +340,11 @@ int L1List<T>::removeLast() {
 }
 
 
-
+extern string fnameEventGB;
+//extern string idNinjaFirst;
+//extern string  idNinjaLast;
+//extern int flat1;
+//extern L1List<string> *idNinjaLostList;
 
 
 #endif //A01_LISTLIB_H
