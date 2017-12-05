@@ -570,7 +570,7 @@ bool process9Event(ninjaEvent_t event, L1List<NinjaInfo_t> &dbList) {
 		if (checkId_mapRoad(p->data.id, mapList)) {
 			double rLength = RoadLength(p->data.id, dbList);
 			MapRoad map(p->data.id, rLength);
-			mapList.insertHead(map); //
+			mapList.push_back(map); //
 		}
 		p = p->pNext;
 	}
@@ -653,7 +653,7 @@ bool process10Event(ninjaEvent_t event, L1List<NinjaInfo_t> &dbList) {
 		if (checkId_mapTime(p->data.id, mapList)) {
 			double time = TimeGo(p->data.id, dbList);
 			MapTime map(p->data.id, time);
-			mapList.insertHead(map);
+			mapList.push_back(map);
 		}
 		p = p->pNext;
 	}
@@ -804,7 +804,7 @@ bool process12Event(ninjaEvent_t event, L1List<NinjaInfo_t> &dbList) {
 		if (checkId_mapTime(p->data.id, mapList)) {
 			double time = TimeStop(p->data.id, dbList);
 			MapTime map(p->data.id, time);
-			mapList.insertHead(map);
+			mapList.push_back(map);
 		}
 		p = p->pNext;
 	}
