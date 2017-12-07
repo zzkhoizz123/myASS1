@@ -95,6 +95,12 @@ bool processEvent(ninjaEvent_t& event, L1List<NinjaInfo_t>& nList, void* pGData)
 		return process0Event();
 	}
 	else if (str_first == "1" && str.size() == 1) {
+
+		if (nList.getSize() == 0) {
+			cout << "empty\n";
+			return true;
+		}
+
 		if (flat1 == 0) {
 			cout << "1: " << nList[0].id << '\n';
 		}
@@ -105,6 +111,12 @@ bool processEvent(ninjaEvent_t& event, L1List<NinjaInfo_t>& nList, void* pGData)
 	}
 
 	else if (str_first == "2" && str.size() == 1) {
+
+		if (nList.getSize() == 0) {
+			cout << "empty\n";
+			return true;
+		}
+
 		if (flat1 == 0) {
 			cout << "2: " << nList[nList.getSize()-1].id << '\n';
 		}
@@ -226,12 +238,17 @@ bool processEvent(ninjaEvent_t& event, L1List<NinjaInfo_t>& nList, void* pGData)
 
 bool process1Event(L1List<NinjaInfo_t> &nList) {
 	//extern string idNinjaFirst;
+	if (nList.getSize() == 0) return false;
+	
 	idNinjaFirst = nList[0].id;
 	return true;
 }
 
 bool process2Event(L1List<NinjaInfo_t> &nList) {
 	//extern string idNinjaLast;
+
+	if (nList.getSize() == 0) return false;
+
 	idNinjaLast = nList[nList.getSize() - 1].id;
 	return true;
 }
@@ -300,8 +317,13 @@ bool process3Event(ninjaEvent_t event, L1List<NinjaInfo_t> &dbList) {
 }
 
 bool process4Event(ninjaEvent_t event, L1List<NinjaInfo_t> &dbList) {
-	char idMax[EVENT_CODE_SIZE];
 
+	if (dbList.getSize() == 0) {
+		cout << "empty\n";
+		return true;
+	}
+
+	char idMax[EVENT_CODE_SIZE];
 	L1Item<NinjaInfo_t>* p = dbList.getHead();
 	strcpy(idMax, p->data.id);
 	p = p->pNext;
@@ -567,6 +589,12 @@ string id_maxRoad(L1List<MapRoad> &mapList) {
 }
 
 bool process9Event(ninjaEvent_t event, L1List<NinjaInfo_t> &dbList) {
+
+	if (dbList.getSize() == 0) {
+		cout << "-1\n";
+		return true;
+	}
+
 	L1List<MapRoad> mapList;
 	L1Item<NinjaInfo_t> *p = dbList.getHead();
 	while (p) {
@@ -649,6 +677,11 @@ string id_maxTime(L1List<MapTime> &mapList) {
 }
 
 bool process10Event(ninjaEvent_t event, L1List<NinjaInfo_t> &dbList) {
+
+	if (dbList.getSize() == 0) {
+		cout << "-1\n";
+		return true;
+	}
 
 	L1List<MapTime> mapList;
 	L1Item<NinjaInfo_t> *p = dbList.getHead();
@@ -801,6 +834,12 @@ double TimeStop(const char *id, L1List<NinjaInfo_t> &dblist) {
 }
 
 bool process12Event(ninjaEvent_t event, L1List<NinjaInfo_t> &dbList) {
+
+	if (dbList.getSize() == 0) {
+		cout << "-1\n";
+		return true;
+	}
+
 	L1List<MapTime> mapList;
 	L1Item<NinjaInfo_t>*p = dbList.getHead();
 	while (p) {
@@ -877,6 +916,12 @@ bool checkId_List(char * id, L1List<NinjaInfo_t> &listTemp) {
 }
 
 bool process14Event(ninjaEvent_t event, L1List<NinjaInfo_t> &dbList) {
+
+	if (dbList.getSize() == 0) {
+		cout << "-1\n";
+		return true;
+	}
+
 
 	L1Item<NinjaInfo_t> *p = dbList.getHead();
 

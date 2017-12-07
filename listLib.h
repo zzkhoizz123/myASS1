@@ -221,6 +221,9 @@ void L1List<T>::_reverse(L1Item<T> *&pHead)
 /// My code
 template <class ItemType>
 void L1List<ItemType>::reverse(L1Item<ItemType> *&pHead) {
+
+	if (pHead == NULL) return;
+
 	LinkedStack<ItemType> sNew;
 	L1Item<ItemType> *nNew = pHead;
 	while (nNew) {
