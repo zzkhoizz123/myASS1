@@ -158,7 +158,7 @@ bool processEvent(ninjaEvent_t& event, L1List<NinjaInfo_t>& nList, void* pGData)
 		return true;
 	}
 	else if (str_first_last == "14" && str.size() == 2) {
-		if (flat2 == 0 && ) { // chua goi event 14
+		if (flat2 == 0 ) { // chua goi event 14
 			idNinjaLostList = new L1List<string>();
 			process14Event(event, nList);
 			L1Item<string> *p1 = idNinjaLostList->getHead();
