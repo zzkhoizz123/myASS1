@@ -917,11 +917,6 @@ bool checkId_List(char * id, L1List<NinjaInfo_t> &listTemp) {
 
 bool process14Event(ninjaEvent_t event, L1List<NinjaInfo_t> &dbList) {
 
-	if (dbList.getSize() == 0) {
-		cout << "14: -1\n";
-		return true;
-	}
-
 	L1Item<NinjaInfo_t> *p = dbList.getHead();
 
 	L1List<NinjaInfo_t> listTemp;
