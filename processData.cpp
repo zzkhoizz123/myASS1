@@ -151,17 +151,20 @@ bool processEvent(ninjaEvent_t& event, L1List<NinjaInfo_t>& nList, void* pGData)
 	else if (str_first_last == "12" && str.size() == 2) {
 		return process12Event(event, nList);
 	}
-	else if (str_first_last == "13" && str.size() != 2) {
-		return true; /// Khong xu ly
+	else if (str_first_last == "13") {
+		if (str.size() == 2) {
+			return false;
+		}					
+		return true;
 	}
 	else if (str_first_last == "14" && str.size() == 2) {
-		if (flat2 == 0) { // chua goi event 14
+		if (flat2 == 0 && ) { // chua goi event 14
 			idNinjaLostList = new L1List<string>();
 			process14Event(event, nList);
 			L1Item<string> *p1 = idNinjaLostList->getHead();
 			cout << event.code << ": ";
 			if (p1 == NULL) {
-				cout << "Non-lost\n";
+				cout << "-1\n";
 			}
 			else {
 				while (p1) {
@@ -179,7 +182,7 @@ bool processEvent(ninjaEvent_t& event, L1List<NinjaInfo_t>& nList, void* pGData)
 			L1Item<string> *p1 = idNinjaLostList->getHead();
 			cout << event.code << ": ";
 			if (p1 == NULL) {
-				cout << "Non-lost\n";
+				cout << "-1\n";
 			}
 			else {
 				while (p1) {
@@ -199,7 +202,7 @@ bool processEvent(ninjaEvent_t& event, L1List<NinjaInfo_t>& nList, void* pGData)
 			L1Item<string> *p1 = idNinjaLostList->getHead();
 			cout << event.code << ": ";
 			if (p1 == NULL) {
-				cout << "Non-lost\n";
+				cout << "-1\n";
 			}
 			else {
 				while (p1) {
@@ -841,7 +844,6 @@ bool checkninjaLost(char *id, L1List<NinjaInfo_t> &dbList) {
 		}
 		p = p->pNext;
 	}
-
 	p = p->pNext;
 	while (p) {
 		if (strcmp(id, p->data.id) == 0) {
@@ -879,7 +881,6 @@ bool process14Event(ninjaEvent_t event, L1List<NinjaInfo_t> &dbList) {
 	L1Item<NinjaInfo_t> *p = dbList.getHead();
 
 	L1List<NinjaInfo_t> listTemp;
-
 	while (p) {
 		if (checkId_List(p->data.id, listTemp) == true) {
 			listTemp.insertHead(p->data);
